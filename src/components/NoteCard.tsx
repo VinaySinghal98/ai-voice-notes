@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Trash2, Clock, Hash, ChevronDown, ChevronUp } from 'lucide-react';
 import type { Note } from '../types';
 import { formatDate, formatDuration } from '../utils';

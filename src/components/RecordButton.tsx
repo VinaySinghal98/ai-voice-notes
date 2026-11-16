@@ -1,4 +1,3 @@
-import React from 'react';
 import { Mic, MicOff, Square } from 'lucide-react';
 import type { RecordingState } from '../types';
 import { formatDuration } from '../utils';

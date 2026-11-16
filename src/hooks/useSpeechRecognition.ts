@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, Dispatch, SetStateAction } from 'react';
 import type { RecordingState } from '../types';
 
 interface UseSpeechRecognitionReturn {
@@ -10,7 +10,7 @@ interface UseSpeechRecognitionReturn {
   start: () => void;
   stop: () => void;
   reset: () => void;
-  setTranscript: (value: string) => void;
+  setTranscript: Dispatch<SetStateAction<string>>;
 }
 
 export function useSpeechRecognition(): UseSpeechRecognitionReturn {
@@ -36,7 +36,7 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
   const startTimer = useCallback(() => {
     clearTimer();
     timerRef.current = setInterval(() => {
-      setElapsedSeconds((s) => s + 1);
+      setElapsedSeconds((s: number) => s + 1);
     }, 1000);
   }, [clearTimer]);
 
@@ -66,7 +66,7 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
       }
 
       if (finalText) {
-        setTranscript((prev) => prev + finalText);
+        setTranscript((prev: string) => prev + finalText);
       }
       setInterimTranscript(interimText);
     };
@@ -80,7 +80,6 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
     };
 
     recognition.onend = () => {
-      // Auto-restart if still recording (browser stops after silence)
       if (recordingState === 'recording') {
         recognition.start();
       }
@@ -103,7 +102,7 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
 
   const stop = useCallback(() => {
     if (recognitionRef.current) {
-      recognitionRef.current.onend = null; // prevent auto-restart
+      recognitionRef.current.onend = null;
       recognitionRef.current.stop();
       recognitionRef.current = null;
     }

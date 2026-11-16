@@ -11,16 +11,4 @@ export interface Note {
 
 export type RecordingState = 'idle' | 'recording' | 'paused';
 
-export interface SpeechRecognitionResult {
-  transcript: string;
-  isFinal: boolean;
-  confidence: number;
-}
-
-// Extend Window to include browser Speech API variants
-declare global {
-  interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
-}
+// SpeechRecognition types are declared in src/types/speech.d.ts
