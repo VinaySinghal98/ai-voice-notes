@@ -2,6 +2,8 @@
 
 A real-time speech-to-text note-taking app built with React, TypeScript, and the Web Speech API. Notes are stored locally — no backend, no API keys, no data leaves your browser.
 
+**Live demo →** [voice-notes.vinaybuilds.in](https://voice-notes.vinaybuilds.in)
+
 ---
 
 ## Features
